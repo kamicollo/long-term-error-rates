@@ -96,8 +96,8 @@ with power.expander("Basic inputs", expanded=True):
     cols = st.columns(3)
 
     cols[0].metric("Statistical power", value=f"{rates['power']:.0%}")
-    cols[1].metric("Type S error rate", value=f"{rates['typeS']:.2%}")
-    cols[2].metric("Type M ratio", value=f"{rates['typeM']:.2f}")
+    cols[1].metric("Type S error rate (at MDE)", value=f"{rates['typeS']:.2%}")
+    cols[2].metric("Type M ratio (at MDE)", value=f"{rates['typeM']:.2f}")
 
 with prior.expander(
     "Assumed distribution of effect sizes across experiments", expanded=True
@@ -107,16 +107,16 @@ with prior.expander(
     loc = cols[0].slider(
         "Location parameter (changes center point of distribution)",
         value=-0.015,
-        min_value=-0.10,
-        max_value=0.10,
+        min_value=-0.05,
+        max_value=0.05,
         step=0.001,
         format="%f",
     )
     scale = cols[0].slider(
         "Scale parameter (changes how varied effect sizes are)",
         value=0.01,
-        min_value=0.0,
-        max_value=0.05,
+        min_value=0.001,
+        max_value=0.03,
         step=0.001,
         format="%f",
     )
@@ -124,8 +124,8 @@ with prior.expander(
     a = cols[0].slider(
         "$\\alpha$ parameter (changes how 'protected' the downside is)",
         value=2.0,
-        min_value=0.0,
-        max_value=15.0,
+        min_value=1.0,
+        max_value=7.0,
         step=0.1,
         format="%f",
     )
@@ -171,6 +171,7 @@ with prior.expander(
         fontsize=5,
         color="#d95f02",
     )
+    ax.set_xlim(xmin=-0.05, xmax=0.2)
 
     cols[1].pyplot(fig, use_container_width=True)
 
