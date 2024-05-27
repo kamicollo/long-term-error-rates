@@ -12,7 +12,6 @@ st.markdown("# Long-term error rate calculator")
 
 with st.expander("Intro"):
     c1, c2 = st.columns(2, gap="large")
-    st.text("-- Aurimas Racas, 2024")
 
 c1.markdown("""
 ## What is this about?
@@ -237,3 +236,8 @@ with prior.expander(
                 )
             ),
         )
+
+st.divider()
+st.markdown(
+    "Made by Aurimas Racas, 2024. Find me on [LinkedIn](https://www.linkedin.com/in/aurimas/)."
+)
